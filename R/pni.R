@@ -1,4 +1,5 @@
-##____________________________________________________________________________##
+#' Percent of Normal Index (PNI)
+
 ##  Function to calculate Percent of Normal Precipitation (PNI)               ##
 ##  Pierre L'HERMITE - 2017-10-17 - pni.R                                     ##
 ##____________________________________________________________________________##
