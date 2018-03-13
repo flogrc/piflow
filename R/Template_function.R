@@ -5,8 +5,8 @@
 #'@param  name [class] of the parameter 1 and details
 #'@param  name [class] of the parameter 2 and details
 #'
-#'@return value of output 1 [class] and [unit]
-#'@return value of output 2 [class] and [unit]
+#'@return \emph{output 1} [class] : explanation [unit]
+#'@return \emph{output 2} [class] : explanation [unit]
 #'
 #'@author Florine Garcia (florine.garcia@gmail.com)
 #'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
