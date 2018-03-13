@@ -2,11 +2,11 @@
 #'
 #'Explain the function
 #'
-#'@param  name of the parameter 1 and details
-#'@param  name of the parameter 2 and details
+#'@param  name [class] of the parameter 1 and details
+#'@param  name [class] of the parameter 2 and details
 #'
-#'@return value of output 1
-#'@return value of output 2
+#'@return value of output 1 [class] and [unit]
+#'@return value of output 2 [class] and [unit]
 #'
 #'@author Florine Garcia (florine.garcia@gmail.com)
 #'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
