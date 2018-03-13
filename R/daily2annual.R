@@ -61,29 +61,22 @@ daily2annual <- function(dailyData, startYear = "01-01", FUN = mean,
   # --- Time series extension
   dates <- time(dailyData)
   y <- as.numeric(format(dates, "%Y"))
-  startDate <- paste0(y[1], "-", startYear)
-  if (dates[1] < startDate) {
-    startDate <- paste0((y[1] - 1), "-", startYear)
+  if (!is.regular(dailyData)) {
+    dailyData <- tsExtension(dailyData)
   }
-  seqDates <- seq(as.Date(startDate, paste0(y[length(y)], startYear)), by = tstp)
-  endDate <- seqDates[(length(seqDates) - 1)]
-  rm(seqDates); gc()
-  if (dates[length(dates)] > endDate) {
-    extDates <- seq(endDate, paste0((y[length(y)] + 1), startYear), by = tstp)
-    endDate <- extDates[(length(extDates) - 1)]
-    rm(extDates); gc()
-  }
-  extData <- tsExtension(dailyData, startDate, endDate)
-  
   # --- Time translation if the computation is not the calendar year
-  hydroYear <- yearTranslation(extData, startYear)
+  hydroYear <- yearTranslation(dailyData, startYear)
   
   ##__Time_series_extension_and_Time_translate______________________________####
   ## Calcul du nombre de lacunes par an
-  Adi <- nbNAs(tsData, tstp = "years", hydroYear = hydroYear)
+  Adi <- nbNAs(dailyData, tstp = "years", hydroYear = hydroYear)
   
   ## Aggregation au pas de temps annuel
-  years <- factor(y, levels = unique(y))
+  # if (exists("hydroYear")) {
+  years <- factor(hydroYear, levels = unique(hydroYear))
+  # } else {
+  #   years <- factor(y, levels = unique(y))
+  # }
   if (!identical(FUN, sum)) {
     AnnualData <- aggregate(dailyData, by = years, FUN = FUN, na.rm = TRUE)
   } else {
@@ -95,8 +88,10 @@ daily2annual <- function(dailyData, startYear = "01-01", FUN = mean,
   if (length(nan.index) > 0) { AnnualData[nan.index] <- NA }
   
   ## Prise en compte du seuil de lacunes
-  yearDays <- rep(365, length(unique(y)))
-  yearDays[IsLeapYear(unique(y))] <- 366
+  yearDays <- aggregate(hydroYear, by = list(hydroYear), FUN = function(x) {
+    return(length(x))
+  })
+  yearDays <- yearDays$x
   thresholdYear <- round(yearDays*(1-threshold), 0)
   AnnualData[coredata(Adi) < thresholdYear] <- NA
   if (identical(FUN, sum)) {
@@ -104,7 +99,7 @@ daily2annual <- function(dailyData, startYear = "01-01", FUN = mean,
   }
   
   ## Mise en forme de la date "%Y-%m-%d"
-  AnnualData <- zoo(as.numeric(AnnualData), as.Date(paste0(time(AnnualData),
-                                                           "-01-01")))
+  AnnualData <- zoo(as.numeric(AnnualData),
+                    as.Date(paste0(time(AnnualData), "-", startYear)))
   return(AnnualData)
 }

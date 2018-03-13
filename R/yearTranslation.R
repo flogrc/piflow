@@ -24,7 +24,15 @@ yearTranslation <- function(tsData, startYear, ...) {
   
   ##__year_translation______________________________________________________####
   dates <- time(tsData)
-  iyear <- as.numeric(format(dates[1], "%Y"))
+  y <- as.numeric(format(dates[1], "%Y"))
+  startDate <- paste0(y, "-", startYear)
+  
+  if (dates[1] < startDate) {
+    iyear <- y - 1
+  } else {
+    iyear <- as.numeric(format(dates[1], "%Y"))
+  }
+  
   years <- c(iyear, rep(NA, (length(dates) - 1)))
   for (id in 2:length(dates)) {
     if (format(dates[id], "%m-%d") == startYear) {
