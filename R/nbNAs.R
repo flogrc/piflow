@@ -34,7 +34,7 @@ nbNAs <- function(tsData, tstp = "years", hydroYear) {
            tstpId <- factor(m, levels = unique(m))
          },
          "mPerY" = {
-           mpy <- as.numeric(format(time(tsData), "%Y-%m"))
+           mpy <- format(time(tsData), "%Y-%m")
            tstpId <- factor(mpy, levels = unique(mpy))
          }, {
            stop("unkown value for choice of tstp: ", tstp, "\n")
@@ -42,8 +42,12 @@ nbNAs <- function(tsData, tstp = "years", hydroYear) {
   
   ##__Section_2_____________________________________________________________####
   missV <- aggregate(tsData, by = tstpId, FUN = function(x) {
-                                                  return(length(which(is.na(x))))
+    return(length(which(is.na(x))))
   })
   
+  if(tstp == "mPerY"){
+  missV <- zoo(coredata(missV), index(tsData)) #j'étais obligé de reprendre les 
+  } #dates du zoo de base car en fait les dates ressortent en factor et c'était
+  #chiant de tout rechanger alors que ça tient en une ligne là.
   return(missV)
 }
