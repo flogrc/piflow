@@ -3,16 +3,16 @@
 #'Calculate the index about rainfall anomaly by month with the
 #'length, the drought type and the intensity
 #'
-#'@param monthly_data (zoo) rainfall monthly data in zoo class
+#'@param monthly_data [zoo] rainfall monthly data in zoo class
 #'with date in \%Y-\%m-\%d
 #'
-#'@return resissp (list) : list with 3 zoo et 1 dataframe as below
+#'@return resissp [list] : list that contains
 #'\itemize{
-#'\item issp (zoo) : zoo with the issp values with date in %Y-\%m-\%d
-#'\item length_zoo (zoo) : zoo with the length of drought with date in
-#'                           \%Y-\%m-\%d
-#'\item drought_type (zoo) : zoo with the type of the period for each month
-#'\item drought_number (dataframe) : dataframe with the number of different
+#'\item $issp [zoo] : zoo with the issp values with date in %Y-\%m-\%d
+#'\item $length_zoo [zoo] : zoo with the length of drought with date in
+#'                           \%Y-\%m-\%d [day]
+#'\item $drought_type [zoo] : zoo with the type of the period for each month
+#'\item $drought_number [data.frame] : dataframe with the number of different
 #'period by type:
 #'\itemize{
 #'\item Extwet (issp > 2)\cr
@@ -23,7 +23,9 @@
 #'\item VeryDry (-1.5 > issp > -1.99)\cr
 #'\item ExtDry (-2 > issp))}
 #'}
-#'@author Pierre L'Hermite
+#'
+#'@author Florine Garcia (florine.garcia@gmail.com)
+#'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
 #'
 #'@examples
 #'## Data preparation
@@ -36,7 +38,7 @@
 #'## Plot index
 #'plot_trend(result$issp, trend = TRUE, data_kind = "Precipitation",
 #'name = PluvioData$PluvioName, axis_name_x = "Date",
-#'axis_name_y = Monthly precipitation (mm/month), midvalue = 0)
+#'axis_name_y = Monthly precipitation [mm/month], midvalue = 0)
 #'
 #'@details
 #'\url{https://idus.us.es/xmlui/bitstream/handle/11441/32523/nice_2000_actes.pdf?sequence=1}
