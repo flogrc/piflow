@@ -29,7 +29,7 @@
 #'
 #'@examples
 #'## Data preparation
-#'load("data/Prec_data.Rdata")
+#'data("Prec_data")
 #'prec <- zoo(PluvioData$TabCompleteP, PluvioData$TabDatesR)
 #'
 #'## Index
@@ -41,7 +41,7 @@
 #'axis_name_y = Monthly precipitation [mm/month], midvalue = 0)
 #'
 #'@references
-#'Pita, M.F. (2000). Un nouvel indice de sécheresse pour les domaines
+#'Pita, M.F. (2000) Un nouvel indice de sécheresse pour les domaines
 #'méditerranéens. Application au bassin de Guadalquivir (sud-ouest de l'Espagne).
 #'\emph{Plubications de l'Association Internationale de Climatologie, 13}, 225-234.
 #'\url{https://idus.us.es/xmlui/bitstream/handle/11441/32523/nice_2000_actes.pdf?sequence=1}
