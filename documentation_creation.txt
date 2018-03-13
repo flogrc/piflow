@@ -5,7 +5,7 @@ Creation of the automatical documentation for package
   - roxygen2 -> Create automatical documentation
   - Rtools -> https://cran.r-project.org/bin/windows/Rtools/
 
-2) Heading with the template with Template_scriptR.R
+2) Heading with the template with Template_function.R
 Think about #' a the beginning of line
 
 Different section : @xxx
