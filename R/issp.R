@@ -6,13 +6,13 @@
 #'@param monthly_data [zoo] rainfall monthly data in zoo class
 #'with date in \%Y-\%m-\%d
 #'
-#'@return resissp [list] : list that contains
+#'@return \emph{resissp} [list] : list that contains
 #'\itemize{
-#'\item $issp [zoo] : zoo with the issp values with date in %Y-\%m-\%d
-#'\item $length_zoo [zoo] : zoo with the length of drought with date in
-#'                           \%Y-\%m-\%d [day]
-#'\item $drought_type [zoo] : zoo with the type of the period for each month
-#'\item $drought_number [data.frame] : dataframe with the number of different
+#'\item \emph{$issp} [zoo] : zoo with the issp values with date in %Y-\%m-\%d
+#'\item \emph{$length_zoo} [zoo] : zoo with the length of drought with date in
+#'\%Y-\%m-\%d [day]
+#'\item \emph{$drought_type} [zoo] : zoo with the type of the period for each month
+#'\item \emph{$drought_number} [data.frame] : dataframe with the number of different
 #'period by type:
 #'\itemize{
 #'\item Extwet (issp > 2)\cr
@@ -29,7 +29,7 @@
 #'
 #'@examples
 #'## Data preparation
-#'load("data/Prec_data.Rdata")
+#'data("Prec_data")
 #'prec <- zoo(PluvioData$TabCompleteP, PluvioData$TabDatesR)
 #'
 #'## Index
@@ -40,12 +40,14 @@
 #'name = PluvioData$PluvioName, axis_name_x = "Date",
 #'axis_name_y = Monthly precipitation [mm/month], midvalue = 0)
 #'
-#'@details
+#'@references
+#'Pita, M.F. (2000) Un nouvel indice de sécheresse pour les domaines
+#'méditerranéens. Application au bassin de Guadalquivir (sud-ouest de l'Espagne).
+#'\emph{Plubications de l'Association Internationale de Climatologie, 13}, 225-234.
 #'\url{https://idus.us.es/xmlui/bitstream/handle/11441/32523/nice_2000_actes.pdf?sequence=1}
-#'Article
 #'
 #'@seealso
-#'\code{\link[piflowtest]{plot_trend}} function to plot
+#'\code{\link[piflowtest]{plot_trend}}: plot the index
 
 issp <- function(monthly_data) {
 
