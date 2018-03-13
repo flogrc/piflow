@@ -17,13 +17,13 @@
 #'\item \emph{drought_number} [data.frame] : dataframe with the number of
 #'different period by type:
 #'\itemize{
-#'\item Extwet (pnpi > 2)\cr
-#'\item Verywet (1.99 > pnpi > 1.5)\cr
-#'\item Wet (1.49 > pnpi > 1)\cr
-#'\item Normal (0.99 > pnpi > -0.99)\cr
-#'\item Dry (-1 > pnpi > -1.49)\cr
-#'\item VeryDry (-1.5 > pnpi > -1.99)\cr
-#'\item ExtDry (-2 > pnpi))}
+#'\item Extwet (pnpi >= 160)\cr
+#'\item Verywet (160 > pnpi >= 145)\cr
+#'\item Wet (145 > pnpi >= 120)\cr
+#'\item Normal (120 > pnpi >= 80)\cr
+#'\item Dry (80 > pnpi >= 55)\cr
+#'\item VeryDry (50 > pnpi >= 40)\cr
+#'\item ExtDry (40 > pnpi))}
 #'}
 #'}
 #'
@@ -31,13 +31,26 @@
 #'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
 #'
 #'@examples
-#'How to use function
+#'## Data preparation
+#'data("Prec_data")
+#'prec <- zoo(PluvioData$TabCompleteP, PluvioData$TabDatesR)
+#'
+#'## Index
+#'result <- pnpi(prec, time_step = 3)
+#'
+#'## Plot index
+#'plot_trend(result$pnpi, trend = TRUE, data_kind = "Precipitation",
+#'name = PluvioData$PluvioName, axis_name_x = "Date",
+#'axis_name_y = Monthly precipitation [mm/month], midvalue = 100)
 #'
 #'@references
-#'
-#'
-#'@details
-#'
+#'Willeke G, Hosking JRM, Wallis JR, Guttman NB (1994) The national drought 
+#'atlas,\emph{Institute for water resources report 94-NDs-4. Army Corps of 
+#'Engineers}, Washington, D.C.\cr
+#'Amirataee, B. and Montaseri, M. (2017) The performance of SPI and PNPI in analyzing
+#'the spatial and temporal trend of dry and wet periods over Iran, \emph{Natural Hazards},
+#'1, 89-106.
+#'\url{https://doi.org/10.1007/s11069-016-2675-4}
 #'
 #'@seealso
 #'\code{\link[piflowtest]{plot_trend}}: plot the index
