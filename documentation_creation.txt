@@ -15,6 +15,9 @@ Each section can be in different order except the fisrt two sections
 Problem : % must be replace by \%
 
 Tips :
+\emph{} -> Italics
+\string{} -> Bold
+\code{} -> look like code
 \cr -> text wrapping
 \itemize -> bullet point
     example :
@@ -29,6 +32,7 @@ You can include different itemize
 More information
 http://r-pkgs.had.co.nz/man.html
 https://bookdown.org/rdpeng/RProgDA/documentation.html
+https://cran.r-project.org/web/packages/roxygen2/vignettes/formatting.html
 
 3) Creation of documentation
 Step 1 : Function with the new heading
