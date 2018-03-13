@@ -1,0 +1,88 @@
+---
+title: "Creation of the automatical documentation for package"
+author: "Florine Garcia and Pierre L'Hermite"
+date: "13 mars 2018"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1) Packages
+
+3 packages are needed to create automaticall short documentation for each function  
+
+```{r}
+library(devtools) # Contain function document()
+library(roxygen2) # Create automatical documentation
+```
+The last package Rtools must be downloading with this link :
+[Package](https://cran.r-project.org/bin/windows/Rtools/)
+
+## 2) Headings
+
+The [template](https://github.com/flogrc/piflow/blob/master/R/Template_function.R)
+gives an example of the minimal information for each function.
+
+Different sections begin by @something and sections can be in different order
+except for the first two sections (short resume of function and the explanation
+of the function)  
+
+**Tips :**  
+* Start a line   
+```{r}
+#'
+```
+* Italics  
+```{r}
+#'\emph{}
+```
+* Bold  
+```{r}
+#'\string{}
+```
+* Look like code  
+```{r}
+#'\code{}
+```
+* Text wrapping  
+```{r}
+#'\cr
+```
+* Bullet point, you can include different itemize and there are different type
+of bullet point (\enumerate, \itemize, \describe)  
+**Example :**  
+```{r}
+#'\itemize
+#'    @return zoo  
+#'    \itemize{  
+#'    \item Wet  
+#'    \item Normal  
+#'    \item Dry  
+#'    }
+```
+**Problem**
+```{r}
+#'\% replace %  
+```
+
+More informations are available on different website :  
+[R package](http://r-pkgs.had.co.nz/man.html)  
+[Mastering Software Development in R](https://bookdown.org/rdpeng/RProgDA/documentation.html)  
+[Text formatting reference sheet](https://cran.r-project.org/web/packages/roxygen2/vignettes/formatting.html)  
+
+## 3) Creation of documentation
+
+1. Create your function with the new heading with roxygen2 (see part 2 Heading)  
+2. Delete all files in man folder of your package
+3. Use a function of devtools package
+```{r eval = FALSE}
+devtools::document()
+```
+4. Install and restart package in the "build" tab, your package will be check and
+install in your Rstudio session (Ctrl+Shift+B)  
+5. Check the result with the "help" tab with your different function  
+6. Restart your creation for each function or if you want to improve one
