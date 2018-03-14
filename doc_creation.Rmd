@@ -72,7 +72,7 @@ of bullet point (\enumerate, \itemize, \describe)
 More informations are available on different website :  
 [R package](http://r-pkgs.had.co.nz/man.html)  
 [Mastering Software Development in R](https://bookdown.org/rdpeng/RProgDA/documentation.html)  
-[Text formatting reference sheet](https://cran.r-project.org/web/packages/roxygen2/vignettes/formatting.html)  
+[Text formatting reference sheet](https://cran.r-project.org/web/packages/roxygen2/vignettes/formatting.html)
 [Learning more about Markdown](http://r-pkgs.had.co.nz/vignettes.html)
 
 ## 3) Creation of documentation
