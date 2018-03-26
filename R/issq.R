@@ -1,29 +1,49 @@
-##____________________________________________________________________________##
-##  Function to calculate ISSQ index of Pita for discarge                     ##
-##  Pierre L'HERMITE - 20180119 - issq.R                                      ##
-##____________________________________________________________________________##
-##----------------------------------------------------------------------------##
-#   Description: Calculate the index about discharge anomaly by month with the
-#              length, the drought type and the intensity
-##----------------------------------------------------------------------------##
-#   Argument: monthly_data [zoo] : discharge monthly data in zoo class 
-#                                   with date in %Y-%m-%d
-##----------------------------------------------------------------------------##
-#   Values: resissq [list] : list with 3 zoo et 1 dataframe
-#                             (issq, lengthzoo, drought_type, drought_number)
-#           issq [zoo] : zoo with the issq values with date in %Y-%m-%d
-#           lengthzoo [zoo] : zoo with the length of drought with date
-#                              in %Y-%m-%d
-#           drought_type [zoo] : zoo with the type of the period for
-#                                 each month 
-#           drought_number [dataframe] : dataframe with the number of 
-#                           different period by type
-#                           Extwet [issq>2], Verywet [1.99>issq>1.5],
-#                           wet [1.49>issq>1], Normal [0.99>issq>-0.99],
-#                           Dry [-1>issq>-1.49], VeryDry [-1.5>issq>-1.99],
-#                           ExtDry [-2>issq])
-##----------------------------------------------------------------------------##
-#-------------------------------------------------------------------------------
+#'Calculate ISSQ index of Pita for discarge
+#'
+#'Calculate the index about discharge anomaly by month with the
+#'length, the drought type and the intensity
+#'
+#'@param  monthly_data [zoo] discharge monthly data in zoo class with date 
+#'in \%Y-\%m-\%d
+#'
+#'@return \emph{resissq} [list] : list that contains
+#'\itemize{
+#'\item \emph{$issq} [zoo] : zoo with the issq values with date in \%Y-\%m-\%d
+#'\item \emph{$length_zoo} [zoo] : zoo with the length of drought with date in
+#'\%Y-\%m-\%d [day]
+#'\item \emph{$drought_type} [zoo] : zoo with the type of the period for each month
+#'\item \emph{$drought_number} [data.frame] : dataframe with the number of different
+#'period by type:
+#'\itemize{
+#'\item Extwet (issq > 2)\cr
+#'\item Verywet (1.99 > issq > 1.5)\cr
+#'\item Wet (1.49 > issq > 1)\cr
+#'\item Normal (0.99 > issq > -0.99)\cr
+#'\item Dry (-1 > issq > -1.49)\cr
+#'\item VeryDry (-1.5 > issq > -1.99)\cr
+#'\item ExtDry (-2 > issq))}
+#'}
+#'
+#'@author Florine Garcia (florine.garcia@gmail.com)
+#'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
+#'
+#'@examples
+#'## Data preparation
+#'data("Prec_data")
+#'flow <- zoo(PluvioData$TabCompleteP, PluvioData$TabDatesR)
+#'
+#'## Index
+#'result <- issp(flow)
+#'
+#'## Plot index
+#'plot_trend(result$issq, trend = TRUE, data_kind = "Flow",
+#'name = PluvioData$PluvioName, axis_name_x = "Date",
+#'axis_name_y = Monthly flow [mm/month], midvalue = 0)
+#'
+#'@references
+#'
+#'@seealso
+#'\code{\link[piflowtest]{plot_trend}}: plot the index
 
 issq <- function(monthly_data) {
   
