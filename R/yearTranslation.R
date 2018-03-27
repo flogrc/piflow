@@ -1,5 +1,5 @@
 ##____________________________________________________________________________##
-##  Function which create a vector for the computation of hydrological years  ##
+##  Create a vector for the computation of hydrological years                 ##
 ##  Florine Garcia - 20180306 - yearTranslation                               ##
 ##____________________________________________________________________________##
 ##----------------------------------------------------------------------------##
@@ -33,24 +33,25 @@ yearTranslation <- function(tsData, startYear) {
     stop("startYear format must be 'MM'"); return(NULL)
   }
   
-  ##__year_translation______________________________________________________####
+  ##__year_Translation______________________________________________________####
   dates <- time(tsData)
   y <- as.numeric(format(dates[1], "%Y"))
   startDate <- paste0(y, "-", startYear, "-01")
-  # --- dates before start
+  # --- Dates before start
   if (dates[1] < startDate) {
     datesBefore <- dates[1:(which(dates == startDate) - 1)]
-    yBefore <- rep((y - 1), length(datesBefore)
+    yBefore <- rep((y - 1), length(datesBefore))
     dates <- dates[which(dates == startDate):length(dates)]
   }
-  # --- translation
+  # --- Translation
   timestep <- periodicity(tsData)$scale
   switch(timestep,
          "daily" = { tstp <- "days" },
          "monthly" = { tstp <- "months" }, {
            stop("unkown value for choice of timestep: ", timestep, "\n")
          })
-  years <- format(seq(startDate, by = tstp, length. = length(dates)), "%Y")
+  years <- format(seq(as.Date(startDate), by = tstp, length.out = length(dates)),
+                  "%Y")
   
   if (exists("yBefore")) {
     years <- c(yBefore, as.numeric(years))
