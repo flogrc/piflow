@@ -1,5 +1,5 @@
 ##____________________________________________________________________________##
-##  Function which extend a time series                                       ##
+##  Extend a daily or monthly time series                                     ##
 ##  Florine Garcia - 20180306 - tsExtension                                   ##
 ##____________________________________________________________________________##
 ##----------------------------------------------------------------------------##
@@ -53,8 +53,8 @@ tsExtension <- function(tsData, startDate = start(tsData), endDate = end(tsData)
       stop("format of 'tsData' must be '%Y-%m-01'")
     }
   }
-  ##__Check_Regularity_zoo_and_ts_extension_if_necessary____________________####
-  # --- get the time step
+  ##__Check_Regularity_Zoo_And_Ts_Extension_If_Necessary____________________####
+  # --- Get the time step
   timestep <- periodicity(tsData)$scale
   switch(timestep,
          "daily" = { tstp <- "days" },
