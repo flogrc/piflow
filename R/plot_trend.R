@@ -18,7 +18,8 @@
 #'@param axis_name_y (character) Indicate axis y title name
 #'(Precipitation, Total discharge, Mean annual temperature...)
 #'
-#'@return  If (trend == TRUE): two grpahs, first one with data and trend results, second one with sequential Mann-Kendall test
+#'@return  If (trend == TRUE): two grpahs, first one with data and trend 
+#'results, second one with sequential Mann-Kendall test
 #'@return  If (trend == FALSE): one graph with data only
 #'
 #'@author Pierre L'HERMITE
