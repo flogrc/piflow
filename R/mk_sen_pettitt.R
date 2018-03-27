@@ -8,49 +8,34 @@
 #'
 #'@return \emph{res_test} [list] : list that contains
 #'\itemize{
-#'\item \emph{$issp} [zoo] : zoo with the issp values with date in \%Y-\%m-\%d
-#'\item \emph{$length_zoo} [zoo] : zoo with the length of drought with date in
-#'\%Y-\%m-\%d [day]
-#'\item \emph{$drought_type} [zoo] : zoo with the type of the period for each month
-#'\item \emph{$drought_number} [data.frame] : dataframe with the number of different
-#'period by type:
+#'\item \emph{$res_mk} [list] : resume of Mann-Kendall test
+#'\item \emph{$symbol_mk} [zoo] : vector with MK symbol according 
+#'to pvalue of MK test
 #'\itemize{
-#'\item Extwet (issp > 2)\cr
-#'\item Verywet (1.99 > issp > 1.5)\cr
-#'\item Wet (1.49 > issp > 1)\cr
-#'\item Normal (0.99 > issp > -0.99)\cr
-#'\item Dry (-1 > issp > -1.49)\cr
-#'\item VeryDry (-1.5 > issp > -1.99)\cr
-#'\item ExtDry (-2 > issp))}
+#'\item "-" if pvalue > 0.1\cr
+#'\item "+" if 0.1 > pvalue > 0.05\cr
+#'\item "++" if 0.05 > pvalue > 0.01\cr
+#'\item "+++" if pvalue < 0.01\cr
+#'}
+#'\item \emph{$pettitt} [list] : resume of Pettitt test
+#'\item \emph{$symbol_pettitt} [zoo] : vector with Pettitt symbol according to
+#'Pettitt test
+#'\itemize{
+#'\item "-" if pvalue > 0.1\cr
+#'\item "+" if 0.1 > pvalue > 0.05\cr
+#'\item "++" if 0.05 > pvalue > 0.01\cr
+#'\item "+++" if pvalue < 0.01\cr
+#'}
+#'\item\emph{$slope} [numeric] : slope according to Sen test
 #'}
 #'
 #'@author Florine Garcia (florine.garcia@gmail.com)
 #'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
 #'
 #'@examples
-#'How to use function
-#'
-#'@references
-#'
-#'@details
-#'
-#'@seealso
-#'\code{\link[package name]{function name}}
+#'result <- mk_sen_pettitt(data)
 
-#   Values: res [list] : res_mk [] : resume of Mann-Kendall test
-#                        symbol_mk [vect] : vector with MK symbol according 
-#                        to pvalue of MK test ("-" if pvalue > 0.1, "+" if
-#                        0.1 > pvalue > 0.05, "++" if 0.05 > pvalue > 0.01, and
-#                        "+++" if pvalue < 0.01)
-#                        pettitt [] : resume of Pettitt test
-#                        symbol_pettitt [vect] : vector with Pettitt symbol 
-#                        according to Pettitt test ("-" if pvalue > 0.1, "+" if
-#                        0.1 > pvalue > 0.05, "++" if 0.05 > pvalue > 0.01, and
-#                        "+++" if pvalue < 0.01)
-#                        slope [numeric] : slope according to Sen test
-##----------------------------------------------------------------------------##
-#-------------------------------------------------------------------------------
-
+library(trend)
 mk_sen_pettitt <- function(data)
 {
   ##__Checking______________________________________________________________####
@@ -87,6 +72,7 @@ mk_sen_pettitt <- function(data)
   } else {
     (symbol_mk <- "-")
   }
+  symbol_mk <- zoo(symbol_mk, index(data))
   
   if (pettitt$p.value <= 0.01) {
     (symbol_pettitt <- "+++")
@@ -97,8 +83,9 @@ mk_sen_pettitt <- function(data)
   } else {
     (symbol_pettitt <- "-")
   }
+  symbol_pettitt <- zoo(symbol_pettitt, index(data))
   
   res_test <- list(res_mk, symbol_mk, pettitt, symbol_pettitt, 
-              as.numeric(slope[1]))
+                   slope = as.numeric(slope[1]))
   return(res_test)
 }
