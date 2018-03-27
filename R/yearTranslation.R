@@ -14,7 +14,7 @@
 #                hydrological year. The format must be "MM" (by default, 
 #                calendar year: "01")
 ##----------------------------------------------------------------------------##
-#   Value: years [numeric]: vector of the translated years
+#   Value: years [character]: vector of the translated years
 ##----------------------------------------------------------------------------##
 #-------------------------------------------------------------------------------
 yearTranslation <- function(tsData, startYear) {
