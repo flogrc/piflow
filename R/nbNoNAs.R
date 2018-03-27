@@ -15,7 +15,7 @@
 #'   \item "months": to calculate the number of days per month
 #'   \item "mPerY": to calculate the number of days per month per year
 #' }
-#'@param  hydroYear [numeric] vector of the translated years when calculating
+#'@param  hydroYear [character] vector of the translated years when calculating
 #' the number of dates per hydrological year (by default, calendar year: NULL)
 #'
 #'@return \emph{missV} [zoo] : zoo object with the annual or monthly computed
@@ -44,7 +44,7 @@ nbNoNAs <- function(tsData, tstp = "years", hydroYear = NULL) {
   switch(tstp,
          "years" = {
            if (exists("hydroYear")) {
-             if (!is.numeric(hydroYear)) {
+             if (!is.character(hydroYear)) {
                stop("hydroYear must be a numeric"); return(NULL)
              }
              tstpId <- factor(hydroYear, levels = unique(hydroYear))
