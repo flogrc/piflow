@@ -1,16 +1,19 @@
-##____________________________________________________________________________##
-##  Function which test if a year is a leap year                              ##
-##  Florine Garcia - 20180301 - isLeapYear                                    ##
-##____________________________________________________________________________##
-##----------------------------------------------------------------------------##
-#   Description: Return TRUE if a year is a leap year
-##----------------------------------------------------------------------------##
-#   Arguments: year [numeric]: the value of the year(s) to be tested
-##----------------------------------------------------------------------------##
-#   Value: leapYear [boolean]: the logical vector indicating if the year(s)
-#            is(are) a leap year(s)
-##----------------------------------------------------------------------------##
-#-------------------------------------------------------------------------------
+#'Test if a year is a leap year
+#'
+#'Return TRUE if a year is a leap year
+#'
+#'@param  year [numeric] the value of the year(s) to be tested
+#'
+#'@return \emph{leapYear} [boolean] : the logical vector indicating if the
+#'year(s) is(are) a leap year(s)
+#'
+#'@author Florine Garcia (florine.garcia@gmail.com)
+#'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
+#'
+#'@examples
+#'isLeapYear(2017)
+#'isLeapYear(c(2004, 2012, 2015))
+
 isLeapYear <- function(year) {
   ##__Check_arguments_______________________________________________________####
   if (!is.numeric(year)) { stop("year must be a numeric"); return(NULL) }

@@ -1,28 +1,31 @@
-##____________________________________________________________________________##
-##  Function to calculate annual data from daily data                         ##
-##  Florine Garcia - 20150520 - daily2annual                                  ##
-##____________________________________________________________________________##
-##----------------------------------------------------------------------------##
-#   Function : Transform a daily regular time series into an annual one. The
-#     user can give a threshold of missing values authorized per year for the
-#     aggregation and choose the day to start the year (hydrological or not)
-##----------------------------------------------------------------------------##
-#   Arguments: dailyData [zoo] : zoo object with the daily time series. The
-#                date format must be "%Y-%m-%d"
-#              startYear [character]: indicate the month to start the
-#                hydrological year. The format must be "MM" (by default, 
-#                calendar year: "01")
-#              FUN [function] : function that have to be applied for the annual
-#                aggregation (by default: mean)
-#              threshold [numeric] : threshold of missing values authorized to
-#                compute the annual aggregation. Values must be between 0 and 1
-#                (by default, 10%: 0.1)
-##----------------------------------------------------------------------------##
-#   Sortie : annualData [zoo] : zoo object with the annual computed time series.
-#              The date is in the format "%Y-MM-01", corresponding of the start
-#              of the year
-##----------------------------------------------------------------------------##
-#-------------------------------------------------------------------------------
+#'Function to calculate annual data from daily data
+#'
+#'Transform a daily regular time series into an annual one. The
+#'user can give a threshold of missing values authorized per year for the
+#'aggregation and choose the day to start the year (hydrological or not)
+#'
+#'@param  dailyData [zoo] zoo object with the daily time series. The date format
+#'must be "\%Y-\%m-\%d"
+#'@param  startYear [character] indicate the month to start the
+#' hydrological year. The format must be "MM" (by default,
+#' calendar year: "01")
+#'@param  FUN [function] function that have to be applied for the annual
+#'aggregation (by default: mean)
+#'@param threshold [numeric] : threshold of missing values authorized to
+#'compute the annual aggregation. Values must be between 0 and 1
+#'(by default, 10\%: 0.1)
+#'
+#'@return \emph{annualData} [zoo] : zoo object with the annual computed time series.
+#'The date is in the format "\%Y-MM-01", corresponding of the start of the year
+#'
+#'@author Florine Garcia (florine.garcia@gmail.com)
+#'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
+#'
+#'@examples
+#'daily2annual(dailyprec, startYear = "08", FUN = sum, threshold = 0.1)
+#'
+#'@details
+
 daily2annual <- function(dailyData, startYear = "01", FUN = mean, threshold = 0.1) {
   ##__Check_Input_Arguments_________________________________________________####
   # --- Check the class

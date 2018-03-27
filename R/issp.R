@@ -8,7 +8,7 @@
 #'
 #'@return \emph{resissp} [list] : list that contains
 #'\itemize{
-#'\item \emph{$issp} [zoo] : zoo with the issp values with date in %Y-\%m-\%d
+#'\item \emph{$issp} [zoo] : zoo with the issp values with date in \%Y-\%m-\%d
 #'\item \emph{$length_zoo} [zoo] : zoo with the length of drought with date in
 #'\%Y-\%m-\%d [day]
 #'\item \emph{$drought_type} [zoo] : zoo with the type of the period for each month
