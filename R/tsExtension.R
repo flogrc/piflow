@@ -1,5 +1,5 @@
 ##____________________________________________________________________________##
-##  Function which extend a time series                                       ##
+##  Extend a daily or monthly time series                                     ##
 ##  Florine Garcia - 20180306 - tsExtension                                   ##
 ##____________________________________________________________________________##
 ##----------------------------------------------------------------------------##
@@ -49,12 +49,12 @@ tsExtension <- function(tsData, startDate = start(tsData), endDate = end(tsData)
     if (format(endDate, "%d") != "01") {
       stop("format of 'endDate' must be '%Y-%m-01'")
     }
-    if (sum(as.numeric(format(time(tsData), "%d"))-1) != 0) {
+    if (sum(as.numeric(format(time(tsData), "%d")) - 1) != 0) {
       stop("format of 'tsData' must be '%Y-%m-01'")
     }
   }
-  ##__Check_Regularity_zoo_and_ts_extension_if_necessary____________________####
-  # --- get the time step
+  ##__Check_Regularity_Zoo_And_Ts_Extension_If_Necessary____________________####
+  # --- Get the time step
   timestep <- periodicity(tsData)$scale
   switch(timestep,
          "daily" = { tstp <- "days" },
@@ -62,8 +62,6 @@ tsExtension <- function(tsData, startDate = start(tsData), endDate = end(tsData)
            stop("unkown value for choice of timestep: ", timestep, "\n")
          })
   # --- Ts extension
-  dates <- time(tsData)
-  y <- as.numeric(format(dates, "%Y"))
   seqDates <- seq(as.Date(startDate), as.Date(endDate), by = tstp)
   # --- NA fill preparation
   naDates <- zoo(rep(NA, length(seqDates)), as.Date(seqDates))
@@ -71,6 +69,6 @@ tsExtension <- function(tsData, startDate = start(tsData), endDate = end(tsData)
   # --- Merge for extension and filling
   extTsData <- merge.zoo(naDates, winTsData)
   extTsData <- extTsData[, -1]
-
+  
   return(extTsData)
 }
