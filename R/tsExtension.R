@@ -5,17 +5,27 @@
 ##----------------------------------------------------------------------------##
 #   Description: Extension of a daily or monthly time series with the chosen
 #                  first and last dates, and transformation of irregular zoo in
-#                  regular zoo
+#                  regular zoo by adding NA when missing dates.
 ##----------------------------------------------------------------------------##
-#   Arguments: tsData [zoo]: zoo object with the daily or monthly time series
-#                (date format: "%Y-%m-%d")
-#              startDate [character]: the first date for the extension (date
-#                format: "%Y-%m-%d") 
-#              endDate [character] : the last date for the extension (date
-#                format: "%Y-%m-%d") 
+#   Arguments: tsData [zoo]: zoo object with the daily or monthly time series.
+#                The date format must be:
+#                  - "%Y-%m-%d" for daily data
+#                  - "%Y-%m-01" for monthly data
+#              startDate [Date]: the first date of the extension. The date
+#                format must be:
+#                  - "%Y-%m-%d" for daily data
+#                  - "%Y-%m-01" for monthly data
+#                (by default, first date of tsData: start(tsData))
+#              endDate [Date] : the last date of the extension. The date
+#                format must be:
+#                  - "%Y-%m-%d" for daily data
+#                  - "%Y-%m-01" for monthly data
+#                (by default, last date of tsData: end(tsData))
 ##----------------------------------------------------------------------------##
 #   Value: extTsData [zoo]: regular zoo object with the daily or monthly
-#            extended time series (date format: "%Y-%m-%d")
+#            extended time series. The date format is:
+#              - "%Y-%m-%d" for daily data
+#              - "%Y-%m-01" for monthly data
 ##----------------------------------------------------------------------------##
 #-------------------------------------------------------------------------------
 tsExtension <- function(tsData, startDate = start(tsData), endDate = end(tsData)) {
@@ -28,7 +38,21 @@ tsExtension <- function(tsData, startDate = start(tsData), endDate = end(tsData)
   if (!isDate(endDate)) {
     stop("endDate must be a date"); return(NULL)
   }
-  
+  # --- Check the time step and the date format
+  if (!(periodicity(tsData)$scale %in% c("daily", "monthly"))) {
+    stop("dailyData must be a daily or monthly time series \n"); return(NULL)
+  }
+  if (periodicity(tsData)$scale == "monthly") {
+    if (format(startDate, "%d") != "01") {
+      stop("format of 'startDate' must be '%Y-%m-01'")
+    }
+    if (format(endDate, "%d") != "01") {
+      stop("format of 'endDate' must be '%Y-%m-01'")
+    }
+    if (sum(as.numeric(format(time(tsData), "%d"))-1) != 0) {
+      stop("format of 'tsData' must be '%Y-%m-01'")
+    }
+  }
   ##__Check_Regularity_zoo_and_ts_extension_if_necessary____________________####
   # --- get the time step
   timestep <- periodicity(tsData)$scale
@@ -41,13 +65,12 @@ tsExtension <- function(tsData, startDate = start(tsData), endDate = end(tsData)
   dates <- time(tsData)
   y <- as.numeric(format(dates, "%Y"))
   seqDates <- seq(as.Date(startDate), as.Date(endDate), by = tstp)
-  
-  ## Soit
+  # --- NA fill preparation
   naDates <- zoo(rep(NA, length(seqDates)), as.Date(seqDates))
   winTsData <- window(tsData, start = startDate, end = endDate)
+  # --- Merge for extension and filling
   extTsData <- merge.zoo(naDates, winTsData)
-  extTsData <- extTsData[,-1]
-  # --- Check regularity
+  extTsData <- extTsData[, -1]
 
   return(extTsData)
 }
