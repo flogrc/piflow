@@ -12,7 +12,7 @@
 #' year. The format must be "MM" (by default, calendar year: "01")
 #'@param threshold [numeric] threshold of missing values authorized to compute
 #' the annual aggregation. Values must be between 0 and 1 (by default, 10\%: 0.1)
-#@... further arguments
+#'@param ... further arguments
 #'
 #'@return \emph{annualData} [zoo] : zoo object with the annual computed time
 #' series. The date is in the format "\%Y-MM-01", corresponding of the start
@@ -54,19 +54,15 @@ monthly2annual <- function(monthlyData, FUN = mean, startYear = "01", threshold 
   # --- Time series extension if irregular time series
   dates <- time(monthlyData)
   y <- as.numeric(format(dates, "%Y"))
-  if (!is.regular(monthlyData)) {
-    monthlyData <- tsExtension(monthlyData)
-  }
+  monthlyData <- tsExtension(monthlyData)
+  
   # --- Time translation if the computation is not the calendar year
   hydroYear <- yearTranslation(monthlyData, startYear)
   
   ##__Annual_Aggregation____________________________________________________####
+  years <- factor(hydroYear, levels = unique(hydroYear))
   if (!identical(FUN, sum)) {
-    if (length(which(names(formals(FUN)) == "na.rm")) == 1) {
-      annualData <- aggregate(monthlyData, by = years, FUN = FUN, na.rm = TRUE, ...)
-    } else {
-      annualData <- aggregate(monthlyData, by = years, FUN = FUN, ...)
-    }
+    annualData <- aggregate(monthlyData, by = years, FUN = FUN, na.rm = TRUE, ...)
   } else {
     annualData <- aggregate(monthlyData, by = years, FUN = mean, na.rm = TRUE)
   }
@@ -78,17 +74,16 @@ monthly2annual <- function(monthlyData, FUN = mean, startYear = "01", threshold 
   adi <- nbNoNAs(monthlyData, hydroYear = hydroYear, tstp = "years")
   # --- Take the threshold of NAs into account
   ## Number of total days per year
-  years <- factor(hydroYear, levels = unique(hydroYear))
-  yearDays <- aggregate(hydroYear, by = years, FUN = function(x) {
+  yearDays <- aggregate(hydroYear, by = list(years), FUN = function(x) {
     return(length(x))
   })
   yearDays <- yearDays$x
   ## Threshold
-  thresholdYear <- round(yearDays*(1-threshold), 0)
+  thresholdYear <- round(yearDays*(1 - threshold), 0)
   annualData[coredata(adi) < thresholdYear] <- NA
   
   if (identical(FUN, sum)) {
-    coredata(AnnualData) <- coredata(AnnualData) * yearDays
+    coredata(annualData) <- coredata(annualData) * yearDays
   }
   
   ##__Output_Date_Format____________________________________________________####
