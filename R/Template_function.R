@@ -20,6 +20,6 @@
 #'
 #'@seealso
 #'\code{\link[package name]{function name}}
-
+#-------------------------------------------------------------------------------
 function_name <- function(data) {
 }
