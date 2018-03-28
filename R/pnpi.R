@@ -25,7 +25,6 @@
 #'\item VeryDry (50 > pnpi >= 40)\cr
 #'\item ExtDry (40 > pnpi))}
 #'}
-#'}
 #'
 #'@author Florine Garcia (florine.garcia@gmail.com)
 #'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)

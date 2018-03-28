@@ -35,9 +35,9 @@
 #'@examples
 #'result <- mk_sen_pettitt(data)
 
-library(trend)
 mk_sen_pettitt <- function(data)
 {
+  library(trend)
   ##__Checking______________________________________________________________####
   # Data input checking
   if (missing(data)) {stop("Must have data \n"); return(NULL)}

@@ -28,12 +28,7 @@
 #'
 #'@author Florine Garcia (florine.garcia@gmail.com)
 #'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
-#'
-#'@examples
-#'
-#'
-#'@details
-#-------------------------------------------------------------------------------
+
 nbNoNAs <- function(tsData, tstp = "years", hydroYear = NULL) {
   ##__Check_Input_Arguments_________________________________________________####
   # --- Check the class
