@@ -25,7 +25,7 @@
 #'daily2annual(dailyprec, FUN = sum, startYear = "08", threshold = 0.1)
 #'
 #'@details
-#-------------------------------------------------------------------------------
+
 daily2annual <- function(dailyData, FUN = mean, startYear = "01", threshold = 0.1, ...) {
   ##__Check_Input_Arguments_________________________________________________####
   # --- Check the class
@@ -61,15 +61,19 @@ daily2annual <- function(dailyData, FUN = mean, startYear = "01", threshold = 0.
   
   ##__Annual_Aggregation____________________________________________________####
   years <- factor(hydroYear, levels = unique(hydroYear))
+  dailyDF <- data.frame(year = hydroYear, dData = coredata(dailyData))
   if (!identical(FUN, sum)) {
-    annualData <- aggregate(dailyData, by = years, FUN = FUN, na.rm = TRUE, ...)
+    annualData <- aggregate(dailyDF$dData, by = list(years), FUN = FUN, na.rm = TRUE)
   } else {
-    annualData <- aggregate(dailyData, by = years, FUN = mean, na.rm = TRUE)
+    annualData <- aggregate(dailyDF$dData, by = list(years), FUN = mean, na.rm = TRUE)
   }
   
   ##__Handle_NA_Values______________________________________________________####
-  nan.index <- which(is.nan(annualData))
+  nan.index <- which(is.nan(annualData$x))
   if (length(nan.index) > 0) { annualData[nan.index] <- NA }
+  
+  annualData <- zoo(annualData$x, as.Date(paste0(annualData$Group.1, "-",
+                                                 startYear, "-01")))
   # --- Number of days per year without NA values
   adi <- nbNoNAs(dailyData, hydroYear = hydroYear, tstp = "years")
   # --- Take the threshold of NAs into account
@@ -86,8 +90,5 @@ daily2annual <- function(dailyData, FUN = mean, startYear = "01", threshold = 0.
     coredata(annualData) <- coredata(annualData) * yearDays
   }
   
-  ##__Output_Date_Format____________________________________________________####
-  annualData <- zoo(as.numeric(annualData),
-                    as.Date(paste0(time(annualData), "-", startYear, "-01")))
   return(annualData)
 }

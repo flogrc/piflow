@@ -40,7 +40,7 @@ yearTranslation <- function(tsData, startYear) {
   # --- Dates before start
   if (dates[1] < startDate) {
     datesBefore <- dates[1:(which(dates == startDate) - 1)]
-    yBefore <- rep((y - 1), length(datesBefore))
+    yBefore <- as.character(rep((y - 1), length(datesBefore)))
     dates <- dates[which(dates == startDate):length(dates)]
   }
   # --- Translation
@@ -54,7 +54,7 @@ yearTranslation <- function(tsData, startYear) {
                   "%Y")
   
   if (exists("yBefore")) {
-    years <- c(yBefore, as.numeric(years))
+    years <- c(as.character(yBefore), years)
   }
   
   return(years)
