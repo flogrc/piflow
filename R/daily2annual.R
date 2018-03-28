@@ -23,8 +23,6 @@
 #'
 #'@examples
 #'daily2annual(dailyprec, FUN = sum, startYear = "08", threshold = 0.1)
-#'
-#'@details
 
 daily2annual <- function(dailyData, FUN = mean, startYear = "01", threshold = 0.1, ...) {
   ##__Check_Input_Arguments_________________________________________________####
