@@ -5,13 +5,11 @@
 #'@param date [] the class you will test
 #'
 #'@return
-#'\emph{
 #'\enumerate{
-#'\code{class} the logical vector indicating if the date is in
+#'\emph{\code{class}} the logical vector indicating if the date is in
 #'date class (boolean) \cr
-#'\item Return TRUE if a date is a date class
-#'\item Return FALSE if a date is another class
-#'}
+#'\item Return \emph{\code{TRUE}} : if a date is a date class
+#'\item Return \emph{\code{FALSE}} : if a date is another class
 #'}
 #'
 #'@author Florine Garcia (florine.garcia@gmail.com)

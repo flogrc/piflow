@@ -4,8 +4,8 @@
 #'
 #'@param  year [numeric] the value of the year(s) to be tested
 #'
-#'@return \emph{leapYear} [boolean] : the logical vector indicating if the
-#'year(s) is(are) a leap year(s)
+#'@return \emph{\code{leapYear}} [boolean] : the logical vector indicating if
+#'the year(s) is(are) a leap year(s)
 #'
 #'@author Florine Garcia (florine.garcia@gmail.com)
 #'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)

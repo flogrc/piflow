@@ -14,8 +14,8 @@
 #' the annual aggregation. Values must be between 0 and 1 (by default, 10\%: 0.1)
 #'@param ... further arguments
 #'
-#'@return \emph{annualData} [zoo] : zoo object with the annual computed time
-#' series. The date is in the format "\%Y-MM-01", corresponding of the start
+#'@return \emph{\code{annualData}} [zoo] : zoo object with the annual computed
+#'time series. The date is in the format "\%Y-MM-01", corresponding of the start
 #' month of the year
 #'
 #'@author Florine Garcia (florine.garcia@gmail.com)
