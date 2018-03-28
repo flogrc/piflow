@@ -1,6 +1,6 @@
 #'Test date class
 #'
-#'Test if a date is a date class
+#'Test if a data is a date class
 #'
 #'@param date [] the class you will test
 #'
