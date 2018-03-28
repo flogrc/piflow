@@ -1,30 +1,53 @@
-##____________________________________________________________________________##
-##  Function to calculate Rainfall Anomaly Index (RAI)                        ##
-##  Pierre L'HERMITE - 2017-10-17 - rai.R                                     ##
-##____________________________________________________________________________##
-##----------------------------------------------------------------------------##
-#   Description: Calculation of rainfall anomaly index                        ##
-##----------------------------------------------------------------------------##
-#   Arguments: monthly_data [zoo] : rainfall monthly data in zoo class 
-#                                   with date in %Y-%m-%d
-#              time_step [numeric] : default = 12, time step to sum monthly 
-#                                   precipitation (1, 3, 6, 9, 12, 24 and 48)
-##----------------------------------------------------------------------------##
-#   Values: resrai [list] : list with 3 zoo et 1 dataframe
-#                           (rai, length_zoo, drought_type, drought_number)
-#           rai [zoo] : zoo with the rai values with date in %Y-%m-%d
-#           length_zoo [zoo] : zoo with the length of drought with date
-#                              in %Y-%m-%d
-#           drought_type [zoo] : zoo with the type of the period for
-#                                 each month 
-#           drought_number [dataframe] : dataframe with the number of 
-#                           different period by type
-#                           Extwet [rai>2], Verywet [1.99>rai>1.5],
-#                           wet [1.49>rai>1], Normal [0.99>rai>-0.99],
-#                           Dry [-1>rai>-1.49], VeryDry [-1.5>rai>-1.99],
-#                           ExtDry [-2>rai])
-##----------------------------------------------------------------------------##
-#-------------------------------------------------------------------------------
+#'Calculate Rainfall Anomaly Index (RAI)
+#'
+#'Calculation of rainfall anomaly index by month with the
+#'length, the drought type and the intensity
+#'
+#'@param monthly_data [zoo] rainfall monthly data in zoo class
+#'with date in \%Y-\%m-\%d
+#'@param time_step [numeric] : default = 12, time step to sum monthly 
+#'precipitation (1, 3, 6, 9, 12, 24 and 48)
+#'
+#'@return \emph{resrai} [list] : list that contains
+#'\itemize{
+#'\item \emph{$rai} [zoo] : zoo with the rai values with date in \%Y-\%m-\%d
+#'\item \emph{$length_zoo} [zoo] : zoo with the length of drought with date in
+#'\%Y-\%m-\%d [day]
+#'\item \emph{$drought_type} [zoo] : zoo with the type of the period for each month
+#'\item \emph{$drought_number} [data.frame] : dataframe with the number of different
+#'period by type:
+#'\itemize{
+#'\item Extwet (rai > 3)\cr
+#'\item Verywet (2.99 > rai > 2)\cr
+#'\item Wet (1.99 > rai > 1)\cr
+#'\item Normal (0.99 > rai > -0.99)\cr
+#'\item Dry (-1 > rai > -1.99)\cr
+#'\item VeryDry (-2 > rai > -2.99)\cr
+#'\item ExtDry (-3 > rai))}
+#'}
+#'
+#'@author Florine Garcia (florine.garcia@gmail.com)
+#'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
+#'
+#'@examples
+#'## Data preparation
+#'data("Prec_data")
+#'prec <- zoo(PluvioData$TabCompleteP, PluvioData$TabDatesR)
+#'
+#'## Index
+#'result <- rao(prec, time_step = 12)
+#'
+#'## Plot index
+#'plot_trend(result$rai, trend = TRUE, data_kind = "RAI",
+#'name = PluvioData$PluvioName, axis_name_x = "Date",
+#'axis_name_y = RAI [], midvalue = 0)
+#'
+#'@references
+#'Van Rooy, M. P. (1965). A rainfall anomaly index independent of time and space.
+#'\emph{Notos, 14}, 43–48.
+#'
+#'@seealso
+#'\code{\link[piflowtest]{plot_trend}} : plot the index
 
 rai <- function(monthly_data, time_step = 12){
   
