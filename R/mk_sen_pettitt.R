@@ -3,7 +3,7 @@
 #'Obtain trend with Mann-Kendall test, breaking point with 
 #'Pettitt test and Sen test to have the coefficient of regression 
 #'
-#'@param  data [zoo] : vector with daily, monthly, seasonnal or annual 
+#'@param  data [zoo] vector with daily, monthly, seasonnal or annual 
 #'with date in \%Y-\%m-\%d
 #'
 #'@return \emph{res_test} [list] : list that contains
