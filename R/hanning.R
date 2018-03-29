@@ -1,8 +1,8 @@
 #'Filter data with Hanning filter order 2
 #'
-#'Eliminate variations
+#'Eliminate variations to data series to observe better the logn term variation
 #'
-#'@param monthly_data [zoo] : rainfall daily, monthlyn seasonnality or annual data
+#'@param monthly_data [zoo] rainfall daily, monthlyn seasonnality or annual data
 #'in zoo class with date in \%Y-\%m-\%d
 #'
 #'@return \emph{\code{hanzoo}} [zoo] : vector with data after hanning filter 
@@ -24,10 +24,10 @@
 #'relative to some atmospheric (southern oscillation) and oceanic
 #'(El Nino / La Nina) circulation indicators
 #'Sécheresse, vol. 10, n° 4, p. 245-252.
-#'\url{http://www.jle.com/download/sec-273441-analyse_de_la_variabilite_temporelle_des_precipitations_1916_1996_a_lubumbashi_congo_kinshasa_en_relation_avec_certains_ind--WqbE738AAQEAABN6YpkAAAAC-a.pdf}
+#'\url{http://www.jle.com/download/sec-273441-analyse_de_la_variabilite_temporelle_des_precipitations_1916_1996_a_lubumbashi_congo_kinshasa_en_relation_avec_certains_ind--Wry8Vn8AAQEAAHR@S0wAAAAG-a.pdf}
 #'
 #'@seealso
-#'\code{\link[piflowtest]{plot_trend}} function to plot
+#'\code{\link[piflowtest]{plot_trend}} : function to plot
 
 hanning <- function(data){
 

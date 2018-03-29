@@ -5,7 +5,7 @@
 #'
 #'@param monthly_data [zoo] rainfall monthly data in zoo class
 #'with date in \%Y-\%m-\%d
-#'@param time_step [numeric] : default = 12, time step to sum monthly 
+#'@param time_step [numeric] default = 12, time step to sum monthly 
 #'precipitation (1, 3, 6, 9, 12, 24 and 48)
 #'
 #'@return \emph{resrai} [list] : list that contains

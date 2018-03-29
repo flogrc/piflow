@@ -1,21 +1,33 @@
-##____________________________________________________________________________##
-##  Function to calculate SPEI                                                ##
-##  Pierre L'HERMITE - 2017-10-12 - spei.R                                    ##
-##____________________________________________________________________________##
-##----------------------------------------------------------------------------##
-#   Description: Calculate the standardized precipitation-evaportranspiration ##
-#                index and the drought specifications                         ##
-##----------------------------------------------------------------------------##
-#   Arguments: prec_data [zoo]: rainfall monthly data in zoo class 
-#                               with date in %Y-%m-%d
-#              evapo_data [zoo]: evapotranspiration monthly data in zoo class
-#                                with date in %Y-%m-%d
-#              time_step [numeric] : default = 12, time step to sum monthly 
-#                                   precipitation (1, 3, 6, 9, 12, 24 and 48)
-#              distribution [character] : distribution of data (log_Logistic,
-#                                           gamma, grev, genlog, normal)
-##----------------------------------------------------------------------------##
-#   Values: resspei [list] : list with 3 zoo et 1 dataframe
+#'Calculate SPEI
+#'
+#'Calculate the standardized precipitation-evaportranspiration index and the 
+#'drought specifications 
+#'
+#'@param  prec_data [zoo] rainfall monthly data in zoo class with date 
+#'in \%Y-\%m-\%d
+#'@param  evapo_data [zoo] evapotranspiration monthly data in zoo class 
+#'with date in \%Y-\%m-\%d
+#'@param  time_step [numeric] by default = 12, time step to sum monthly data
+#'(1, 3, 6, 9, 12, 24 and 48)
+#'@param  distribution [character] distribution of data 
+#'(log_Logistic, gamma, grev, genlog, normal)
+#'
+#'@return \emph{resspei} [list] : list that contains
+#'@return \emph{output 2} [class] : explanation [unit]
+#'
+#'@author Florine Garcia (florine.garcia@gmail.com)
+#'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
+#'
+#'@examples
+#'How to use function
+#'
+#'@references
+#'
+#'@details
+#'
+#'@seealso
+#'\code{\link[package name]{function name}}
+
 #                           (spei, length_zoo, drought_type, drought_number)
 #           spei [zoo] : zoo with the spei values with date in %Y-%m-%d
 #           length_zoo [zoo] : zoo with the length of drought with date
