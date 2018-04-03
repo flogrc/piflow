@@ -44,12 +44,12 @@ ssfi <- function(MonthlyData, Delta=12, Distribution = "gamma"){
   #Premier mois
   firstmonth <- as.numeric(substr(index(MonthlyData[1]), 6, 7))
   
-  #Utilisation du package SCI pour calculer le SSFI
-  ssfi.para <- fitSCI(coredata(MonthlyData), first.mon = firstmonth,
-                      distr = Distribution, time.scale = Delta, p0 = TRUE)
-  SSFI_val <- transformSCI(coredata(MonthlyData), first.mon = firstmonth,
-                       obj = ssfi.para)
-  SSFI <- zoo(SSFI_val, order.by = index(MonthlyData))
+  # Using SPEI package to calculate spi
+  res_ssfi <- SPEI::spi(coredata(MonthlyData[which(!is.na(MonthlyData))]),
+                         scale = time_step, distribution = distribution,
+                         na.rm = TRUE)
+  ssfi <- zoo(as.numeric(res_ssfi$fitted),
+             order.by = index(MonthlyData[which(!is.na(MonthlyData))]))
   
   #Comptage du nombre de secheresse
   ExWet <- VWet <- Wet <- Normal <- Dry <- VDry <- ExDry<-0
