@@ -6,13 +6,13 @@
 #'@param  monthly_data [zoo] discharge monthly data in zoo class with date 
 #'in \%Y-\%m-\%d
 #'
-#'@return \emph{resissq} [list] : list that contains
+#'@return \emph{resissq} [list] list that contains
 #'\itemize{
-#'\item \emph{$issq} [zoo] : zoo with the issq values with date in \%Y-\%m-\%d
-#'\item \emph{$length_zoo} [zoo] : zoo with the length of drought with date in
+#'\item \emph{$issq} [zoo] zoo with the issq values with date in \%Y-\%m-\%d
+#'\item \emph{$length_zoo} [zoo] zoo with the length of drought with date in
 #'\%Y-\%m-\%d [day]
-#'\item \emph{$drought_type} [zoo] : zoo with the type of the period for each month
-#'\item \emph{$drought_number} [data.frame] : dataframe with the number of different
+#'\item \emph{$drought_type} [zoo] zoo with the type of the period for each month
+#'\item \emph{$drought_number} [data.frame] dataframe with the number of different
 #'period by type:
 #'\itemize{
 #'\item Extwet (issq > 2)\cr

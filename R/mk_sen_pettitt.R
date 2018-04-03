@@ -6,27 +6,27 @@
 #'@param  data [zoo] vector with daily, monthly, seasonnal or annual 
 #'with date in \%Y-\%m-\%d
 #'
-#'@return \emph{res_test} [list] : list that contains
+#'@return \emph{res_test} [list] list that contains
 #'\itemize{
-#'\item \emph{$res_mk} [list] : resume of Mann-Kendall test
-#'\item \emph{$symbol_mk} [zoo] : vector with MK symbol according 
-#'to pvalue of MK test
-#'\itemize{
-#'\item "-" if pvalue > 0.1\cr
-#'\item "+" if 0.1 > pvalue > 0.05\cr
-#'\item "++" if 0.05 > pvalue > 0.01\cr
-#'\item "+++" if pvalue < 0.01\cr
-#'}
-#'\item \emph{$pettitt} [list] : resume of Pettitt test
-#'\item \emph{$symbol_pettitt} [zoo] : vector with Pettitt symbol according to
-#'Pettitt test
+#'\item \emph{$res_mk} [list] resume of Mann-Kendall test
+#'\item \emph{$symbol_mk} [zoo] vector with MK symbol according 
+#'to pvalue of MK test:
 #'\itemize{
 #'\item "-" if pvalue > 0.1\cr
 #'\item "+" if 0.1 > pvalue > 0.05\cr
 #'\item "++" if 0.05 > pvalue > 0.01\cr
 #'\item "+++" if pvalue < 0.01\cr
 #'}
-#'\item\emph{$slope} [numeric] : slope according to Sen test
+#'\item \emph{$pettitt} [list] resume of Pettitt test
+#'\item \emph{$symbol_pettitt} [zoo] vector with Pettitt symbol according to
+#'Pettitt test:
+#'\itemize{
+#'\item "-" if pvalue > 0.1\cr
+#'\item "+" if 0.1 > pvalue > 0.05\cr
+#'\item "++" if 0.05 > pvalue > 0.01\cr
+#'\item "+++" if pvalue < 0.01\cr
+#'}
+#'\item\emph{$slope} [numeric] slope according to Sen test
 #'}
 #'
 #'@author Florine Garcia (florine.garcia@gmail.com)

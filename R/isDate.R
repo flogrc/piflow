@@ -8,8 +8,8 @@
 #'\enumerate{
 #'\emph{\code{class}} the logical vector indicating if the date is in
 #'date class (boolean) \cr
-#'\item Return \emph{\code{TRUE}} : if a date is a date class
-#'\item Return \emph{\code{FALSE}} : if a date is another class
+#'\item Return \emph{\code{TRUE}} if a date is a date class
+#'\item Return \emph{\code{FALSE}} if a date is another class
 #'}
 #'
 #'@author Florine Garcia (florine.garcia@gmail.com)

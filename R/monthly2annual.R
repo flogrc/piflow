@@ -15,7 +15,7 @@
 #'@param na.rm [boolean] boolean vector (by default, TRUE)
 #'@param ... further arguments
 #'
-#'@return \emph{\code{annualData}} [zoo] : zoo object with the annual computed
+#'@return \emph{\code{annualData}} [zoo] zoo object with the annual computed
 #'time series. The date is in the format "\%Y-MM-01", corresponding of the start
 #' month of the year
 #'

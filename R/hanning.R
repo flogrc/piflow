@@ -5,7 +5,7 @@
 #'@param monthly_data [zoo] rainfall daily, monthlyn seasonnality or annual data
 #'in zoo class with date in \%Y-\%m-\%d
 #'
-#'@return \emph{\code{hanzoo}} [zoo] : vector with data after hanning filter 
+#'@return \emph{\code{hanzoo}} [zoo] vector with data after hanning filter 
 #'with date in \%Y-\%m-\%d
 #'
 #'@author Pierre L'Hermite

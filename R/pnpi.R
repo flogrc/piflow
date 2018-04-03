@@ -8,13 +8,13 @@
 #'with date in \%Y-\%m-\%d
 #'@param  time_step [numeric] default = 12, time step (1, 3, 6, 9, 12, 24 and 48)
 #'
-#'@return \emph{respnpi} [list] : that contains
+#'@return \emph{respnpi} [list] that contains
 #'\itemize{
-#'\item \emph{pnpi} [zoo] : zoo with the pnpi values with date in %Y-\%m-\%d
-#'\item \emph{length_zoo} [zoo] : zoo with the length of drought with date in
+#'\item \emph{pnpi} [zoo] zoo with the pnpi values with date in %Y-\%m-\%d
+#'\item \emph{length_zoo} [zoo] zoo with the length of drought with date in
 #'\%Y-\%m-\%d [day]
-#'\item \emph{drought_type} [zoo] : zoo with the type of the period for each month
-#'\item \emph{drought_number} [data.frame] : dataframe with the number of
+#'\item \emph{drought_type} [zoo] zoo with the type of the period for each month
+#'\item \emph{drought_number} [data.frame] dataframe with the number of
 #'different period by type:
 #'\itemize{
 #'\item Extwet (pnpi >= 160)\cr
