@@ -1,33 +1,39 @@
-##____________________________________________________________________________##
-##  Extend a daily or monthly time series                                     ##
-##  Florine Garcia - 20180306 - tsExtension                                   ##
-##____________________________________________________________________________##
-##----------------------------------------------------------------------------##
-#   Description: Extension of a daily or monthly time series with the chosen
-#                  first and last dates, and transformation of irregular zoo in
-#                  regular zoo by adding NA when missing dates.
-##----------------------------------------------------------------------------##
-#   Arguments: tsData [zoo]: zoo object with the daily or monthly time series.
-#                The date format must be:
-#                  - "%Y-%m-%d" for daily data
-#                  - "%Y-%m-01" for monthly data
-#              startDate [Date]: the first date of the extension. The date
-#                format must be:
-#                  - "%Y-%m-%d" for daily data
-#                  - "%Y-%m-01" for monthly data
-#                (by default, first date of tsData: start(tsData))
-#              endDate [Date] : the last date of the extension. The date
-#                format must be:
-#                  - "%Y-%m-%d" for daily data
-#                  - "%Y-%m-01" for monthly data
-#                (by default, last date of tsData: end(tsData))
-##----------------------------------------------------------------------------##
-#   Value: extTsData [zoo]: regular zoo object with the daily or monthly
-#            extended time series. The date format is:
-#              - "%Y-%m-%d" for daily data
-#              - "%Y-%m-01" for monthly data
-##----------------------------------------------------------------------------##
-#-------------------------------------------------------------------------------
+#'Extend a daily or monthly time series
+#'
+#'Extension of a daily or monthly time series with the chosen first and 
+#'last dates, and transformation of irregular zoo in regular zoo by 
+#'adding NA when missing dates.
+#'
+#'@param tsData [zoo] zoo object with the daily or monthly time series.
+#'The date format must be:
+#'\itemize{
+#'  \item{"\%Y-\%m-\%d" for daily data}
+#'  \item{"\%Y-\%m-01" for monthly data}
+#'}
+#'@param startDate [Date] the first date of the extension. The date format 
+#'must be:
+#'\itemize{
+  #'  \item{"\%Y-\%m-\%d" for daily data}
+  #'  \item{"\%Y-\%m-01" for monthly data}
+#'} (by default, first date of tsData: start(tsData))
+#'@param endDate [Date] the last date of the extension. The date format 
+#'must be:
+#'\itemize{
+#'  \item{"\%Y-\%m-\%d" for daily data}
+#'  \item{"\%Y-\%m-01" for monthly data}
+#'} (by default, last date of tsData: end(tsData))
+#'
+#'@return extTsData [zoo] regular zoo object with the daily or monthly extended 
+#'time series. The date format is:
+#'\itemize{
+#'  \item{"\%Y-\%m-\%d" for daily data}
+#'  \item{"\%Y-\%m-01" for monthly data}
+#'}
+#'
+#'@author Florine Garcia (florine.garcia@gmail.com)
+#'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
+#'
+
 tsExtension <- function(tsData, startDate = start(tsData), endDate = end(tsData)) {
   ##__Check_Input_Arguments_________________________________________________####
   # --- Check the class

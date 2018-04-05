@@ -4,7 +4,7 @@
 #'
 #'@param  year [numeric] the value of the year(s) to be tested
 #'
-#'@return \emph{\code{leapYear}} [boolean] : the logical vector indicating if
+#'@return \emph{\code{leapYear}} [boolean] the logical vector indicating if
 #'the year(s) is(are) a leap year(s)
 #'
 #'@author Florine Garcia (florine.garcia@gmail.com)

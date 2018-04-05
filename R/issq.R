@@ -1,18 +1,18 @@
 #'Calculate ISSQ index of Pita for discarge
 #'
-#'Calculate the index about discharge anomaly by month with the
+#'Calculate ISSQ with discharge anomaly with quantile 50 by month with the
 #'length, the drought type and the intensity
 #'
 #'@param  monthly_data [zoo] discharge monthly data in zoo class with date 
 #'in \%Y-\%m-\%d
 #'
-#'@return \emph{resissq} [list] : list that contains
+#'@return List that contains
 #'\itemize{
-#'\item \emph{$issq} [zoo] : zoo with the issq values with date in \%Y-\%m-\%d
-#'\item \emph{$length_zoo} [zoo] : zoo with the length of drought with date in
+#'\item \emph{$issq} [zoo] zoo with the issq values with date in \%Y-\%m-\%d
+#'\item \emph{$length_zoo} [zoo] zoo with the length of drought with date in
 #'\%Y-\%m-\%d [day]
-#'\item \emph{$drought_type} [zoo] : zoo with the type of the period for each month
-#'\item \emph{$drought_number} [data.frame] : dataframe with the number of different
+#'\item \emph{$drought_type} [zoo] zoo with the type of the period for each month
+#'\item \emph{$drought_number} [data.frame] dataframe with the number of different
 #'period by type:
 #'\itemize{
 #'\item Extwet (issq > 2)\cr
@@ -21,19 +21,18 @@
 #'\item Normal (0.99 > issq > -0.99)\cr
 #'\item Dry (-1 > issq > -1.49)\cr
 #'\item VeryDry (-1.5 > issq > -1.99)\cr
-#'\item ExtDry (-2 > issq))}
+#'\item ExtDry (-2 > issq)}
 #'}
 #'
 #'@author Florine Garcia (florine.garcia@gmail.com)
 #'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
 #'
 #'@examples
-#'## Data preparation
-#'data("Prec_data")
-#'flow <- zoo(PluvioData$TabCompleteP, PluvioData$TabDatesR)
+#'## Loading data
+#'data("dailyPrec_bv1")
 #'
 #'## Index
-#'result <- issp(flow)
+#'result <- issq(dailyPrec)
 #'
 #'## Plot index
 #'plot_trend(result$issq, trend = TRUE, data_kind = "Flow",
@@ -43,7 +42,7 @@
 #'@references
 #'
 #'@seealso
-#'\code{\link[piflowtest]{plot_trend}}: plot the index
+#'\code{\link[piflowtest]{plot_trend}} plot the index
 
 issq <- function(monthly_data) {
   

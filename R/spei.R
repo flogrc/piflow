@@ -1,7 +1,7 @@
-#'Calculate SPEI
+#'Calculate Standardized Precipitation Evapotranspiration Index (SPEI)
 #'
-#'Calculate the standardized precipitation-evaportranspiration index and the 
-#'drought specifications 
+#'Calculate SPEI and the drought specifications with the length, the drought 
+#'type and the intensity
 #'
 #'@param  prec_data [zoo] rainfall monthly data in zoo class with date 
 #'in \%Y-\%m-\%d
@@ -12,8 +12,21 @@
 #'@param  distribution [character] distribution of data 
 #'(log_Logistic, gamma, grev, genlog, normal)
 #'
-#'@return \emph{resspei} [list] : list that contains
-#'@return \emph{output 2} [class] : explanation [unit]
+#'@return list that contains
+#'@return \emph{spei} [zoo] zoo with the spei values with date in \%Y-\%m-\%d
+#'@return \emph{drought_type} [zoo] zoo with the type of the period for each
+#'month
+#'@return \emph{drought_number} [data.frame] dataframe with the number of 
+#'different period by type
+#'\itemize{
+#'\item Extwet (spei > 2)\cr
+#'\item Verywet (1.99 > spei > 1.5)\cr
+#'\item Wet (1.49 > spei > 1)\cr
+#'\item Normal (0.99 > spei > -0.99)\cr
+#'\item Dry (-1 > spei > -1.49)\cr
+#'\item VeryDry (-1.5 > spei > -1.99)\cr
+#'\item ExtDry (-2 > spei)
+#'}
 #'
 #'@author Florine Garcia (florine.garcia@gmail.com)
 #'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
@@ -22,26 +35,13 @@
 #'How to use function
 #'
 #'@references
-#'
-#'@details
+#'Vincente-Serrano, S.M. et al, (2010) A multiscalar drought index sensitive 
+#'to global warming: the standardized precipitation evapotranspiration index.
+#'\emph{Journal of Climate, 23}
+#'\url{https://www.researchgate.net/profile/Sergio_Vicente-Serrano/publication/262012840_A_Multiscalar_Drought_Index_Sensitive_to_Global_Warming_The_Standardized_Precipitation_Evapotranspiration_Index/links/540c6b1d0cf2f2b29a377f27/A-Multiscalar-Drought-Index-Sensitive-to-Global-Warming-The-Standardized-Precipitation-Evapotranspiration-Index.pdf}
 #'
 #'@seealso
-#'\code{\link[package name]{function name}}
-
-#                           (spei, length_zoo, drought_type, drought_number)
-#           spei [zoo] : zoo with the spei values with date in %Y-%m-%d
-#           length_zoo [zoo] : zoo with the length of drought with date
-#                              in %Y-%m-%d
-#           drought_type [zoo] : zoo with the type of the period for
-#                                 each month 
-#           drought_number [dataframe] : dataframe with the number of 
-#                           different period by type
-#                           Extwet [spei>2], Verywet [1.99>spei>1.5],
-#                           wet [1.49>spei>1], Normal [0.99>spei>-0.99],
-#                           Dry [-1>spei>-1.49], VeryDry [-1.5>spei>-1.99],
-#                           ExtDry [-2>spei])
-##----------------------------------------------------------------------------##
-#-------------------------------------------------------------------------------
+#'\code{\link[piflowtest]{plot_trend}}: plot the index
 
 spei <- function(prec_data, evapo_data, time_step = 12,
                  distribution = "log-Logistic") {
@@ -58,14 +58,11 @@ spei <- function(prec_data, evapo_data, time_step = 12,
   if (periodicity(evapo_data)$scale != "monthly") {
     stop("evapo_data must be a monthly serie \n"); return(NULL)
   }
-  
   ##__Calculation___________________________________________________________####
-  library(SPEI)
-  
   diff <- prec_data - evapo_data
   
   # Using SPEI package to calculate spei
-  res_spei <- spei(coredata(diff[which(!is.na(diff))]), scale = time_step,
+  res_spei <- SPEI::spei(coredata(diff[which(!is.na(diff))]), scale = time_step,
                    distribution = distribution, na.rm = TRUE)
   spei <- zoo(as.numeric(res_spei$fitted),
               order.by = index(diff[which(!is.na(diff))]))

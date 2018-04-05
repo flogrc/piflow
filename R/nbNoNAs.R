@@ -18,7 +18,7 @@
 #'@param  hydroYear [character] vector of the translated years when calculating
 #' the number of dates per hydrological year (by default, calendar year: NULL)
 #'
-#'@return \emph{missV} [zoo] : zoo object with the annual or monthly computed
+#'@return \emph{missV} [zoo] zoo object with the annual or monthly computed
 #' time series of number of dates without missing values. The date is in the
 #' format: "\%Y-MM-01", corresponding of the start of the year
 #' \itemize{  

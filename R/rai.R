@@ -1,20 +1,20 @@
 #'Calculate Rainfall Anomaly Index (RAI)
 #'
-#'Calculation of rainfall anomaly index by month with the
-#'length, the drought type and the intensity
+#'Calculate RAI and the drought specifications with the length, the drought 
+#'type and the intensity
 #'
 #'@param monthly_data [zoo] rainfall monthly data in zoo class
 #'with date in \%Y-\%m-\%d
 #'@param time_step [numeric] default = 12, time step to sum monthly 
 #'precipitation (1, 3, 6, 9, 12, 24 and 48)
 #'
-#'@return \emph{resrai} [list] : list that contains
+#'@return List that contains
 #'\itemize{
-#'\item \emph{$rai} [zoo] : zoo with the rai values with date in \%Y-\%m-\%d
-#'\item \emph{$length_zoo} [zoo] : zoo with the length of drought with date in
+#'\item \emph{$rai} [zoo] zoo with the rai values with date in \%Y-\%m-\%d
+#'\item \emph{$length_zoo} [zoo] zoo with the length of drought with date in
 #'\%Y-\%m-\%d [day]
-#'\item \emph{$drought_type} [zoo] : zoo with the type of the period for each month
-#'\item \emph{$drought_number} [data.frame] : dataframe with the number of different
+#'\item \emph{$drought_type} [zoo] zoo with the type of the period for each month
+#'\item \emph{$drought_number} [data.frame] dataframe with the number of different
 #'period by type:
 #'\itemize{
 #'\item Extwet (rai > 3)\cr
@@ -23,19 +23,18 @@
 #'\item Normal (0.99 > rai > -0.99)\cr
 #'\item Dry (-1 > rai > -1.99)\cr
 #'\item VeryDry (-2 > rai > -2.99)\cr
-#'\item ExtDry (-3 > rai))}
+#'\item ExtDry (-3 > rai)}
 #'}
 #'
 #'@author Florine Garcia (florine.garcia@gmail.com)
 #'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
 #'
 #'@examples
-#'## Data preparation
-#'data("Prec_data")
-#'prec <- zoo(PluvioData$TabCompleteP, PluvioData$TabDatesR)
+#'## Loading data
+#'data("dailyPrec_bv1")
 #'
 #'## Index
-#'result <- rao(prec, time_step = 12)
+#'result <- rai(dailyPrec, time_step = 12)
 #'
 #'## Plot index
 #'plot_trend(result$rai, trend = TRUE, data_kind = "RAI",
@@ -47,7 +46,7 @@
 #'\emph{Notos, 14}, 43–48.
 #'
 #'@seealso
-#'\code{\link[piflowtest]{plot_trend}} : plot the index
+#'\code{\link[piflowtest]{plot_trend}} plot the index
 
 rai <- function(monthly_data, time_step = 12){
   

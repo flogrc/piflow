@@ -1,18 +1,20 @@
-#'Calculate ISSP index of Pita
+#'Calculate Indice Standardisé des Sécheresses Pluviométriques of Pita (ISSP)
+#'Standardized of rainfall drought index in english.
 #'
-#'Calculate the index about rainfall anomaly by month with the
-#'length, the drought type and the intensity
+#'
+#'Calculate ISSP with rainfall anomaly with the mean rainfall by month 
+#'with the length, the drought type and the intensity
 #'
 #'@param monthly_data [zoo] rainfall monthly data in zoo class
 #'with date in \%Y-\%m-\%d
 #'
-#'@return \emph{resissp} [list] : list that contains
+#'@return List that contains
 #'\itemize{
-#'\item \emph{$issp} [zoo] : zoo with the issp values with date in \%Y-\%m-\%d
-#'\item \emph{$length_zoo} [zoo] : zoo with the length of drought with date in
+#'\item \emph{$issp} [zoo] zoo with the issp values with date in \%Y-\%m-\%d
+#'\item \emph{$length_zoo} [zoo] zoo with the length of drought with date in
 #'\%Y-\%m-\%d [day]
-#'\item \emph{$drought_type} [zoo] : zoo with the type of the period for each month
-#'\item \emph{$drought_number} [data.frame] : dataframe with the number of different
+#'\item \emph{$drought_type} [zoo] zoo with the type of the period for each month
+#'\item \emph{$drought_number} [data.frame] dataframe with the number of different
 #'period by type:
 #'\itemize{
 #'\item Extwet (issp > 2)\cr
@@ -21,19 +23,18 @@
 #'\item Normal (0.99 > issp > -0.99)\cr
 #'\item Dry (-1 > issp > -1.49)\cr
 #'\item VeryDry (-1.5 > issp > -1.99)\cr
-#'\item ExtDry (-2 > issp))}
+#'\item ExtDry (-2 > issp)}
 #'}
 #'
 #'@author Florine Garcia (florine.garcia@gmail.com)
 #'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
 #'
 #'@examples
-#'## Data preparation
-#'data("Prec_data")
-#'prec <- zoo(PluvioData$TabCompleteP, PluvioData$TabDatesR)
+#'## Loading data
+#'data("dailyPrec_bv1")
 #'
 #'## Index
-#'result <- issp(prec)
+#'result <- issp(dailyPrec)
 #'
 #'## Plot index
 #'plot_trend(result$issp, trend = TRUE, data_kind = "Precipitation",
@@ -47,7 +48,7 @@
 #'\url{https://idus.us.es/xmlui/bitstream/handle/11441/32523/nice_2000_actes.pdf?sequence=1}
 #'
 #'@seealso
-#'\code{\link[piflowtest]{plot_trend}}: plot the index
+#'\code{\link[piflowtest]{plot_trend}} plot the index
 
 issp <- function(monthly_data) {
 
