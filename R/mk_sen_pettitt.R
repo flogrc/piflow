@@ -6,9 +6,9 @@
 #'@param  data [zoo] vector with daily, monthly, seasonnal or annual 
 #'with date in \%Y-\%m-\%d
 #'
-#'@return \emph{res_test} [list] list that contains
+#'@return List that contains
 #'\itemize{
-#'\item \emph{$res_mk} [list] resume of Mann-Kendall test
+#'\item \emph{$res_mk} [list] resume of MK test
 #'\item \emph{$symbol_mk} [zoo] vector with MK symbol according 
 #'to pvalue of MK test:
 #'\itemize{
@@ -33,7 +33,10 @@
 #'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
 #'
 #'@examples
-#'result <- mk_sen_pettitt(data)
+#'#'## Loading data
+#'data("dailyPrec_bv1")
+#'
+#'result <- mk_sen_pettitt(dailyPrec)
 
 mk_sen_pettitt <- function(data)
 {

@@ -1,7 +1,7 @@
-#'Calculate SPEI
+#'Calculate Standardized Precipitation Evapotranspiration Index (SPEI)
 #'
-#'Calculate the standardized precipitation-evaportranspiration index and the 
-#'drought specifications 
+#'Calculate SPEI and the drought specifications with the length, the drought 
+#'type and the intensity
 #'
 #'@param  prec_data [zoo] rainfall monthly data in zoo class with date 
 #'in \%Y-\%m-\%d
@@ -25,7 +25,7 @@
 #'\item Normal (0.99 > spei > -0.99)\cr
 #'\item Dry (-1 > spei > -1.49)\cr
 #'\item VeryDry (-1.5 > spei > -1.99)\cr
-#'\item ExtDry (-2 > spei))}
+#'\item ExtDry (-2 > spei)
 #'}
 #'
 #'@author Florine Garcia (florine.garcia@gmail.com)
@@ -35,8 +35,8 @@
 #'How to use function
 #'
 #'@references
-#'Vincente-Serrano, S.M. et al, A multiscalar drought index sensitive to global
-#'warming: the standardized precipitation evapotranspiration index,
+#'Vincente-Serrano, S.M. et al, (2010) A multiscalar drought index sensitive 
+#'to global warming: the standardized precipitation evapotranspiration index.
 #'\emph{Journal of Climate, 23}
 #'\url{https://www.researchgate.net/profile/Sergio_Vicente-Serrano/publication/262012840_A_Multiscalar_Drought_Index_Sensitive_to_Global_Warming_The_Standardized_Precipitation_Evapotranspiration_Index/links/540c6b1d0cf2f2b29a377f27/A-Multiscalar-Drought-Index-Sensitive-to-Global-Warming-The-Standardized-Precipitation-Evapotranspiration-Index.pdf}
 #'
@@ -58,10 +58,7 @@ spei <- function(prec_data, evapo_data, time_step = 12,
   if (periodicity(evapo_data)$scale != "monthly") {
     stop("evapo_data must be a monthly serie \n"); return(NULL)
   }
-  
   ##__Calculation___________________________________________________________####
-  library(SPEI)
-  
   diff <- prec_data - evapo_data
   
   # Using SPEI package to calculate spei

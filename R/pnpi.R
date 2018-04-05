@@ -1,14 +1,13 @@
-#'Percent of Normal Index (pnpi)
+#'Calculate Percent of Normal Index (PNPI)
 #'
-#'Function which run pnpi for rainfall and give some results about different 
-#'periods (Dry, Normal and Wet), with the length of period, the type of period
-#'and the date and the type of period over the data serie.
+#'Calculate PNPI and the drought specifications with the length, the drought 
+#'type and the intensity
 #'
 #'@param  monthly_data [zoo] rainfall monthly data in zoo class 
 #'with date in \%Y-\%m-\%d
 #'@param  time_step [numeric] default = 12, time step (1, 3, 6, 9, 12, 24 and 48)
 #'
-#'@return \emph{respnpi} [list] that contains
+#'@return list that contains
 #'\itemize{
 #'\item \emph{pnpi} [zoo] zoo with the pnpi values with date in %Y-\%m-\%d
 #'\item \emph{length_zoo} [zoo] zoo with the length of drought with date in
@@ -23,22 +22,21 @@
 #'\item Normal (120 > pnpi >= 80)\cr
 #'\item Dry (80 > pnpi >= 55)\cr
 #'\item VeryDry (50 > pnpi >= 40)\cr
-#'\item ExtDry (40 > pnpi))}
+#'\item ExtDry (40 > pnpi)}
 #'}
 #'
 #'@author Florine Garcia (florine.garcia@gmail.com)
 #'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
 #'
 #'@examples
-#'## Data preparation
-#'data("Prec_data")
-#'prec <- zoo(PluvioData$TabCompleteP, PluvioData$TabDatesR)
+#'## Loading data
+#'data("dailyPrec_bv1")
 #'
 #'## Index
-#'result <- pnpi(prec, time_step = 3)
+#'result <- pnpi(dailyPrec, time_step = 3)
 #'
 #'## Plot index
-#'plot_trend(result$pnpi, trend = TRUE, data_kind = "Precipitation",
+#'plot_trend(result$pnpi, trend = TRUE, data_kind = "PNPI",
 #'name = PluvioData$PluvioName, axis_name_x = "Date",
 #'axis_name_y = Monthly precipitation [mm/month], midvalue = 100)
 #'
@@ -52,7 +50,7 @@
 #'\url{https://doi.org/10.1007/s11069-016-2675-4}
 #'
 #'@seealso
-#'\code{\link[piflowtest]{plot_trend}}: plot the index
+#'\code{\link[piflowtest]{plot_trend}} plot the index
 
 pnpi <- function(monthly_data, time_step = 12){
   

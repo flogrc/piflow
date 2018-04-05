@@ -5,37 +5,37 @@
 #'(breaking point) and Sen slope test (regression).\cr
 #'Second one with Sequential Mann-Kendall test.
 #'
-#'@param data (zoo) Vector with daily, monthly, seasonnal or annual
+#'@param data [zoo] Vector with daily, monthly, seasonnal or annual
 #'with date in \%Y-\%m-\%d
-#'@param trend (boolean) Add or not results of different trend and
+#'@param trend [boolean] Add or not results of different trend and
 #'breaking point test
-#'@param data_kind (character) Indicate the kind of input data
-#'(temperature, precipitation, discharge...)
-#'@param name (character) Indicate the name of input data
-#'(France, World, n°81124...)
-#'@param axis_name_x (character) Indicate axis x title name
+#'@param data_kind [character] Indicate the kind of input data
+#'(temperature, precipitation, discharge, ...)
+#'@param name [character] Indicate the name of input data
+#'(France, World, n°81124, ...)
+#'@param axis_name_x [character] Indicate axis x title name
 #'(Year, Month, Season, Day)
-#'@param axis_name_y (character) Indicate axis y title name
-#'(Precipitation, Total discharge, Mean annual temperature...)
+#'@param axis_name_y [character] Indicate axis y title name
+#'(Precipitation, Total discharge, Mean annual temperature, ...)
 #'
 #'@return  If (trend == TRUE) two grpahs, first one with data and trend 
 #'results, second one with sequential Mann-Kendall test
 #'@return  If (trend == FALSE) one graph with data only
 #'
-#'@author Pierre L'HERMITE
+#'@author Florine Garcia (florine.garcia@gmail.com)
+#'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
 #'
 #'@examples
-#'## Data preparation
-#'load("data/Prec_data.Rdata")
-#'prec <- zoo(PluvioData$TabCompleteP, PluvioData$TabDatesR)
+#'## Loading data
+#'data("dailyPrec_bv1")
 #'
 #'## Plot without trends
-#'#'plot_trend(prec, trend = FALSE, data_kind = "Precipitation", name = "Paris",
+#'#'plot_trend(dailyPrec, trend = FALSE, data_kind = "Precipitation", name = "Paris",
 #'axis_name_x = "Date", axis_name_y = Monthly precipitation (mm/month),
 #'midvalue = 0)
 #'
 #'## Plot with trends
-#'plot_trend(prec, trend = TRUE, data_kind = "Precipitation", name = "Paris",
+#'plot_trend(dailyPrec, trend = TRUE, data_kind = "Precipitation", name = "Paris",
 #'axis_name_x = "Date", axis_name_y = Monthly precipitation (mm/month),
 #'midvalue = 0)
 

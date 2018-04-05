@@ -1,22 +1,23 @@
-##____________________________________________________________________________##
-##  Create a vector for the computation of hydrological years                 ##
-##  Florine Garcia - 20180306 - yearTranslation                               ##
-##____________________________________________________________________________##
-##----------------------------------------------------------------------------##
-#   Description: creation of a vector years translated to compute statistics on
-#                  hydrological years
-##----------------------------------------------------------------------------##
-#   Arguments: tsData [zoo]: zoo object with the daily or monthly time series.
-#                The date format must be:
-#                  - "%Y-%m-%d" for daily data
-#                  - "%Y-%m-01" for monthly data
-#              startYear [character]: indicate the month to start the
-#                hydrological year. The format must be "MM" (by default, 
-#                calendar year: "01")
-##----------------------------------------------------------------------------##
-#   Value: years [character]: vector of the translated years
-##----------------------------------------------------------------------------##
-#-------------------------------------------------------------------------------
+#'Create a vector for the computation of hydrological years
+#'
+#'Creation of a vector years translated to compute statistics on
+#'hydrological years
+#'
+#'@param tsData [zoo] zoo object with the daily or monthly time series.
+#'The date format must be:
+#'\itemize{
+#'  \item{"\%Y-\%m-\%d" for daily data}
+#'  \item{"\%Y-\%m-01" for monthly data}
+#'}
+#'@param startYear [character] indicate the month to start the hydrological year.
+#'The format must be "MM" (by default, calendar year: "01")
+#'
+#'@return years [character] vector of the translated years
+#'
+#'@author Florine Garcia (florine.garcia@gmail.com)
+#'@author Pierre L'Hermite (pierrelhermite@yahoo.fr)
+#'
+
 yearTranslation <- function(tsData, startYear) {
   ##__Check_Input_Arguments_________________________________________________####
   # --- Check the class
