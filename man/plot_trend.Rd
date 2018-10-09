@@ -8,28 +8,29 @@ plot_trend(data, trend = TRUE, data_kind = "", name = "",
   axis_name_x = "Time", axis_name_y = "Data [unit]", mid_value = 0)
 }
 \arguments{
-\item{data}{(zoo) Vector with daily, monthly, seasonnal or annual
+\item{data}{[zoo] Vector with daily, monthly, seasonnal or annual
 with date in \%Y-\%m-\%d}
 
-\item{trend}{(boolean) Add or not results of different trend and
+\item{trend}{[boolean] Add or not results of different trend and
 breaking point test}
 
-\item{data_kind}{(character) Indicate the kind of input data
-(temperature, precipitation, discharge...)}
+\item{data_kind}{[character] Indicate the kind of input data
+(temperature, precipitation, discharge, ...)}
 
-\item{name}{(character) Indicate the name of input data
-(France, World, n°81124...)}
+\item{name}{[character] Indicate the name of input data
+(France, World, n°81124, ...)}
 
-\item{axis_name_x}{(character) Indicate axis x title name
+\item{axis_name_x}{[character] Indicate axis x title name
 (Year, Month, Season, Day)}
 
-\item{axis_name_y}{(character) Indicate axis y title name
-(Precipitation, Total discharge, Mean annual temperature...)}
+\item{axis_name_y}{[character] Indicate axis y title name
+(Precipitation, Total discharge, Mean annual temperature, ...)}
 }
 \value{
-If (trend == TRUE): two grpahs, first one with data and trend results, second one with sequential Mann-Kendall test
+If (trend == TRUE) two grpahs, first one with data and trend 
+results, second one with sequential Mann-Kendall test
 
-If (trend == FALSE): one graph with data only
+If (trend == FALSE) one graph with data only
 }
 \description{
 Plot two graphs, the first one with chronologically data and
@@ -38,20 +39,21 @@ or not Mann-Kendall test results (trend), Pettitt test
 Second one with Sequential Mann-Kendall test.
 }
 \examples{
-## Data preparation
-load("data/Prec_data.Rdata")
-prec <- zoo(PluvioData$TabCompleteP, PluvioData$TabDatesR)
+## Loading data
+data("dailyPrec_bv1")
 
 ## Plot without trends
-#'plot_trend(prec, trend = FALSE, data_kind = "Precipitation", name = "Paris",
+#'plot_trend(dailyPrec, trend = FALSE, data_kind = "Precipitation", name = "Paris",
 axis_name_x = "Date", axis_name_y = Monthly precipitation (mm/month),
 midvalue = 0)
 
 ## Plot with trends
-plot_trend(prec, trend = TRUE, data_kind = "Precipitation", name = "Paris",
+plot_trend(dailyPrec, trend = TRUE, data_kind = "Precipitation", name = "Paris",
 axis_name_x = "Date", axis_name_y = Monthly precipitation (mm/month),
 midvalue = 0)
 }
 \author{
-Pierre L'HERMITE
+Florine Garcia (florine.garcia@gmail.com)
+
+Pierre L'Hermite (pierrelhermite@yahoo.fr)
 }
